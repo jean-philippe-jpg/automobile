@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cadeaux index{% endblock %}
+
+{% block body %}
+    <h1>Cadeaux index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>email</th>
+                <th>password</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for utilisateurs in utilisateur %}
+            <tr>
+                <td>{{ utilisateurs.id }}</td>
+                <td>{{ utilisateurs.name }}</td>
+                <td>{{ utilisateurs.category }}</td>
+                <td>{{ utilisateurs.age }}</td>
+                <td>{{ utilisateurs.description }}</td>
+                <td>
+                    <a href="{{ path('app_cadeaux_show', {'id': utilisateurs.id}) }}">show</a>
+                    <a href="{{ path('app_cadeaux_edit', {'id': utilisateurs.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_utilisateur_new') }}">Create new</a>
+{% endblock %}
